@@ -17,11 +17,11 @@ app.use(express.json());
 //use static files
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fittrack", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/3000", {
   useNewUrlParser: true,
 });
 
-//require('./seeders/seed')
+require("./seeders/seed");
 
 //use routes
 require("./routes/api-routes")(app);
