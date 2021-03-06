@@ -1,14 +1,14 @@
 let mongoose = require("mongoose");
 let db = require("../models");
+const mongoAtlasUri =
+  "mongodb+srv://admin:admin@cluster0.dsrux.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 mongoose.connect(
-  "mongodb+srv://admin:admin@cluster0.dsrux.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  }
+  mongoAtlasUri,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => console.log(" Mongoose is connected")
 );
+
 
 let workoutSeed = [
   {
