@@ -8,6 +8,7 @@ module.exports = function (app) {
         res.json(workout);
       })
       .catch((err) => {
+        console.log(err);
         res.json(err);
       });
   });
