@@ -16,7 +16,7 @@ app.use(express.static("public"));
 
 // Create mongoose database connection
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/myFirstDatabase",
+  process.env.MONGODB_URI || "mongodb://localhost:27017/Cluster0",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
