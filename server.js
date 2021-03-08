@@ -1,28 +1,35 @@
 const express = require("express");
-const logger = require("morgan");
 const mongoose = require("mongoose");
-//!require("./seeders/seed.js"); // Either npm run seed or keep this in here uncommented and it will run the seed
+const logger = require("morgan");
 
-const PORT = process.env.PORT || 3005;
+const PORT = process.env.PORT || 3000;
 
+// Create Express app
 const app = express();
 
 app.use(logger("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fittrack", {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
-});
+// Create mongoose database connection
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/myFirstDatabase",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
+);
 
-//require(apiRoute)(app);
-require("./routes/html-routes")(app);
-require("./routes/api-routes")(app);
+// routes
+app.use(require("./routes/api-routes.js"));
+app.use(require("./routes/html-routes.js"));
 
+// Listen to request
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });

@@ -1,12 +1,21 @@
-var path = require("path");
+const router = require("express").Router();
 
-module.exports = function (app) {
-  // Called when "Countinue Workout" or "new Workout" is clicked in index.html
-  app.get("/exercise", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/exercise.html"));
-  });
-  // Not quite sure what this is used for yet ....
-  app.get("/stats", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/stats.html"));
-  });
-};
+const path = require("path");
+
+//Home page
+router.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
+});
+
+//Exercise Page
+router.get("/exercise", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/exercise.html"));
+});
+
+// GET Request : Stats Page
+router.get("/stats", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/stats.html"));
+});
+
+//HTML routes
+module.exports = router;
