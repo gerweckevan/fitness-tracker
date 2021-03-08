@@ -1,13 +1,15 @@
+// Import Express router
 const router = require("express").Router();
 
+//Import path
 const path = require("path");
 
-//Home page
+// GET Request : Fitness Tracker Home page
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-//Exercise Page
+// GET Request : Exercise Page
 router.get("/exercise", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/exercise.html"));
 });
@@ -17,5 +19,5 @@ router.get("/stats", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/stats.html"));
 });
 
-//HTML routes
+// Export HTML routes
 module.exports = router;

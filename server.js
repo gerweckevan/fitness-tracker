@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 // Create Express app
 const app = express();
 
-app.use(logger("dev"));
+// app.use(logger("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -15,15 +15,13 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Create mongoose database connection
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost:27017/Cluster0",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  }
-);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  serverSelectionTimeoutMS: 10000,
+});
 
 // routes
 app.use(require("./routes/api-routes.js"));
